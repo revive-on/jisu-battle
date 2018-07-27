@@ -1,12 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Tic-Tac-Toe Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Dosis|Gochi+Hand" rel="stylesheet">
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="/dist/build.js"></script>
-  </body>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="src/css/foundation.min.css"/>
+    <link rel="stylesheet" href="src/css/app.css"/>
+
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">The JISU (Player)</h1>
+            <p><img class="mon" src="src/assets/mon1.jpg" width="191" height="213"/></p>
+            <div class="healthbar">
+                <div class="healthbar text-center" style="background-color: green; margin :0; color: white;"
+                     :style="{width: playerHealth + '%'}">{{playerHealth}}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">Kong the princess (Monster)</h1>
+            <p><img class="mon" src="src/assets/mon2.jpg" width="191" height="213"/></p>
+            <div class="healthbar">
+                <div class="healthbar text-center" style="background-color: green; margin :0; color: white;"
+                     :style="{width: monsterHealth + '%'}">{{monsterHealth}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!gameIsRunning">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">게임을 시작하지</button>
+        </div>
+    </section>
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="attack" @click="attack">사랑의 볼터치</button>
+            <button id="special-attack" @click="specialAttack">스페샬 어택</button>
+            <button id="heal" @click="heal">선두먹기</button>
+            <button id="give-up" @click="giveUp">ㅈㅈ</button>
+        </div>
+    </section>
+    <section class="row log" v-if="turns.length >0">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="turn in turns" :class="{'player-turn':turn.isPlayer, 'monster-turn':!turn.isPlayer}">
+                    {{turn.text}}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script src="/src/main.js"></script>
+</body>
 </html>
