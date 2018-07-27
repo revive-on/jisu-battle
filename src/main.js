@@ -14,7 +14,7 @@ new Vue({
             this.turns = [];
         },
         attack: function () {
-            var damage = this.calculateDamage(3, 9);
+            var damage = this.calculateDamage(4, 9);
             this.monsterHealth -= damage;
             this.turns.unshift({
                 isPlayer: true,
@@ -27,7 +27,7 @@ new Vue({
             this.monsterAttacks();
         },
         specialAttack: function () {
-            var damage = this.calculateDamage(10, 15);
+            var damage = this.calculateDamage(1, 15);
             this.monsterHealth -= damage;
             this.turns.unshift({
                 isPlayer: true,
